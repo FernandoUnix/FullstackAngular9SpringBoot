@@ -1,0 +1,55 @@
+<div class="card bg-light" *ngIf="fatura">
+  <div class="card-header">{{titulo}}: {{fatura.descricao}}
+     </div>
+     <div class="card-body">
+       <h4 class="card-title">
+          <a [routerLink]="['/clientes']" class="btn btn-light btn-xs">&laquo; Voltar</a>
+       </h4>
+
+        <ul class="list-group my-2">
+          <li class="list-group-item list-group-item-primary">Dados do Cliente</li>
+          <li class="list-group-item">{{fatura.cliente.nombre}}</li>
+          <li class="list-group-item">{{fatura.cliente.apellido}}</li>
+        </ul>
+
+        <ul class="list-group my-2">
+          <li class="list-group-item list-group-item-primary">Dados da Fatura</li>
+          <li class="list-group-item">Id: {{fatura.id}}</li>
+          <li class="list-group-item">Descrição: {{fatura.descricao}}</li>
+          <li class="list-group-item">Data de cadastro: {{fatura.dataCadastro}}</li>
+        </ul>
+          <table class="table table-striped table-hover table-bordered my-3">
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Precio</th>
+                <th>Quantidade</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of fatura.itens">
+                <td>{{item.produto.nome}}</td>
+                <td>{{item.produto.preco}}</td>
+                <td>{{item.quantidade}}</td>
+                <td>{{item.valorTotal}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 class="float-right">
+             <span> Total: </span>
+             <span class="badge badge-secondary"> {{fatura.total}} </span>
+           </h5>
+
+           <div class="card border-info mb-4" style="max-width:350px">
+             <div class="card card-header">
+               Observações
+             </div>
+             <div class="card card-body">
+               <p *ngIf="!fatura.observacao">Não tem observação</p>
+               <p *ngIf="fatura.observacao">{{fatura.observacao}}</p>
+             </div>
+           </div>
+
+  </div>
+</div>
